@@ -8,7 +8,7 @@ app.set("view engine", "ejs");
 
 app.use(
   session({
-    secret: "qualquercoisa",
+    secret: "f766d328792557bb583ac249bdd0810b",
     cookie: { maxAge: 30000000 },
     saveUninitialized: true,
     resave: true
@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
 });
 
 // End Router
-app.listen(3000, () => {
-  console.log("O servidor está rodando!");
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`O servidor está rodando na porta ${PORT}`);
 });

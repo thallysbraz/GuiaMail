@@ -1,0 +1,62 @@
+<%- include ("../partials/header.ejs") %> <%- include
+("../partials/homenavbar.ejs") %>
+
+<body>
+  <div class="container">
+    <h2 class="mt-5">Criação de um novo plano</h2>
+
+    <hr />
+
+    <form action="" method="POST">
+      <div class="card">
+        <div class="card-header">
+          <h4>Novo plano</h4>
+        </div>
+
+        <div class="card-body">
+          <input
+            type="text"
+            name="title"
+            id="title"
+            class="form-control"
+            placeholder="Titulo do plano"
+          />
+          <br />
+          <input
+            type="number"
+            name="lists"
+            id="lists"
+            class="form-control"
+            placeholder="Numero de listas"
+          />
+          <br />
+          <input
+            type="number"
+            name="client"
+            id="client"
+            class="form-control"
+            placeholder="Numero de clientes"
+          />
+          <br />
+          <input
+            type="number"
+            name="value"
+            id="value"
+            class="form-control"
+            placeholder="Custo"
+          />
+          <br />
+          <hr />
+          Permite importação de lista:
+          <input type="checkbox" name="import" id="import" />
+        </div>
+
+        <div class="card-footer">
+          <button class="btn btn-success btn-block">Cadastrar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+<%- include ("../partials/footer.ejs") %>

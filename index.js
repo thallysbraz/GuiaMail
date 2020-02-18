@@ -1,14 +1,19 @@
 const express = require("express");
+//Iniciando server express
 const app = express();
 const bodyParser = require("body-parser");
 const session = require("express-session");
+require("dotenv/config");
+
+//Rotas
+const PlansRouter = require("./routes/PlansRouter");
 
 // View engine
 app.set("view engine", "ejs");
 
 app.use(
   session({
-    secret: "f766d328792557bb583ac249bdd0810b",
+    secret: process.env.SECRET,
     cookie: { maxAge: 30000000 },
     saveUninitialized: true,
     resave: true
@@ -20,6 +25,9 @@ app.use(express.static("public"));
 //Body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//Routes
+app.use("/", PlansRouter);
 
 // Router
 

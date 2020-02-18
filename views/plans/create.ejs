@@ -23,6 +23,13 @@
             required
           />
           <br />
+
+          <% if (title_msg.length > 0) { %>
+          <div class="alert alert-danger">
+            <%= title_msg %>
+          </div>
+          <% } %>
+
           <input
             type="number"
             name="list"
@@ -32,6 +39,13 @@
             required
           />
           <br />
+
+          <% if (list_msg.length > 0) { %>
+          <div class="alert alert-danger">
+            <%= list_msg %>
+          </div>
+          <% } %>
+
           <input
             type="number"
             name="client"

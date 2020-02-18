@@ -1,11 +1,13 @@
 const express = require("express");
-//Iniciando server express
-const app = express();
 const bodyParser = require("body-parser");
+const flash = require("connect-flash");
 const session = require("express-session");
 require("dotenv/config");
 
-//Rotas
+//Iniciando server express
+const app = express();
+
+//Rota de planos
 const PlansRouter = require("./routes/PlansRouter");
 
 // View engine
@@ -19,6 +21,8 @@ app.use(
     resave: true
   })
 );
+
+app.use(flash());
 
 app.use(express.static("public"));
 

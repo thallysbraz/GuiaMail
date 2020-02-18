@@ -4,6 +4,12 @@ class PlansServices {
   async store(plans) {
     var errors = [];
 
+    if (plans.import != undefined) {
+      plans.import = true;
+    } else {
+      plans.import = false;
+    }
+
     try {
       await Plan.create(plans);
 

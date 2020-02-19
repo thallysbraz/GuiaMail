@@ -1,8 +1,10 @@
 const PlansService = require("../services/PlansService");
 
 class PlansController {
-  index(req, res) {
-    return res.json({ msg: "ok, true" });
+  async index(req, res) {
+    var retorno = await PlansService.index();
+    //return res.json(retorno);
+    res.render("plans/index", { planos: retorno });
   }
 
   create(req, res) {
@@ -26,6 +28,7 @@ class PlansController {
     var result = await PlansService.store(plan);
 
     if (result == true) {
+      return res.json(result);
     } else {
       req.flash("title_msg", result.title_msg);
       req.flash("list_msg", result.list_msg);

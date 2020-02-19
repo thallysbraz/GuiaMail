@@ -5,6 +5,14 @@ class PlansServices {
     this.Plan = Database["Plan"];
   }
 
+  //inde para listar todos os planos
+  async index(req, res) {
+    var planos = await this.Plan.findAll();
+
+    return planos;
+  }
+
+  //store para criar os planos
   async store(plans) {
     var errors = {};
 
@@ -31,6 +39,7 @@ class PlansServices {
     }
   }
 
+  //validações dos planos
   validate(plan, errors) {
     var erroCount = 0;
 

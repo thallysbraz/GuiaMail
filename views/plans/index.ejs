@@ -1,0 +1,41 @@
+<%- include ("../partials/header.ejs") %> <%- include
+("../partials/homenavbar.ejs") %>
+
+<body>
+  <div class="container">
+    <h2 class="mt-5">Planos Cadastrados</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">List</th>
+          <th scope="col">ClientID</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Import</th>
+          <th scope="col">createdAt</th>
+          <th scope="col">updatedAt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% planos.forEach(plano => { %>
+        <tr>
+          <th scope="row"><%= plano.id %></th>
+          <td><%= plano.title %></td>
+          <td><%= plano.list %></td>
+          <td><%= plano.client %></td>
+          <td><%= plano.value %></td>
+          <td><%= plano.import %></td>
+          <td><%= plano.createdAt %></td>
+          <td><%= plano.updatedAt %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <hr />
+  </div>
+</body>
+
+<%- include ("../partials/footer.ejs") %>

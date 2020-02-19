@@ -1,12 +1,14 @@
 const PlansService = require("../services/PlansService");
 
 class PlansController {
+  //index para listar os planos na view
   async index(req, res) {
     var retorno = await PlansService.index();
     //return res.json(retorno);
     res.render("plans/index", { planos: retorno });
   }
 
+  //para renderizar a view de criação
   create(req, res) {
     res.render("plans/create", {
       title_msg: req.flash("title_msg"),

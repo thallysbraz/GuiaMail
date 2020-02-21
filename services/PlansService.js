@@ -6,7 +6,7 @@ class PlansServices {
   }
 
   //inde para listar todos os planos
-  async index(req, res) {
+  async index() {
     var planos = await this.Plan.findAll();
 
     return planos;

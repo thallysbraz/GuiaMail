@@ -7,9 +7,16 @@ class PlansServices {
 
   //inde para listar todos os planos
   async index(req, res) {
-    var planos = await this.Plan.findAll();
-
-    return planos;
+    try {
+      var planos = await this.Plan.findAll();
+      if (planos !== undefined || planos !== null) {
+        return planos;
+      } else {
+        return null;
+      }
+    } catch (err) {
+      return undefined;
+    }
   }
 
   //store para criar os planos
@@ -67,6 +74,16 @@ class PlansServices {
       return true;
     } else {
       return false;
+    }
+  }
+
+  //editar plano
+  async edit(id) {
+    try {
+      var plano = await this.Plan.findByPk(id);
+      return plano;
+    } catch (err) {
+      return undefined;
     }
   }
 }

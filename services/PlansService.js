@@ -122,6 +122,18 @@ class PlansServices {
       return false;
     }
   }
+
+  //active para ativar um plano
+  async active(id) {
+    try {
+      var plan = await this.getById(id);
+      plan.deactivated = false;
+      await plan.save();
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
 }
 
 module.exports = new PlansServices();

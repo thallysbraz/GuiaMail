@@ -76,7 +76,7 @@ class PlansController {
     }
   }
 
-  //
+  //deactivated para desativar um plano
   async deactivated(req, res) {
     var id = req.params.id;
     var desativado = await PlansService.deactivated(id);
@@ -84,6 +84,18 @@ class PlansController {
       res.redirect("/admin/plans");
     } else {
       return res.json({ msg: "falha ao desativar plano" });
+    }
+  }
+
+  //activate para ativar um plano
+
+  async activate(req, res) {
+    var id = req.params.id;
+    var active = await PlansService.active(id);
+    if (active) {
+      res.redirect("/admin/plans");
+    } else {
+      return res.json({ msg: "falha ao ativar plano" });
     }
   }
 }

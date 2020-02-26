@@ -25,28 +25,26 @@
           <td><%= plano.list %></td>
           <td><%= plano.client %></td>
           <td><%= plano.value %></td>
+          <!--Status do plano -->
           <% if (plano.deactivated) { %>
-          <td>Ativado</td>
-          <% } else {%>
           <td>Desativado</td>
+          <% } else {%>
+          <td>Ativado</td>
           <% } %>
-          <td>
-            <a class="btn btn-warning" title="Alterar" href="#">
-              <i class="fa fa-pencil"></i>
-            </a>
-
-            <form
-              method="POST"
-              action="#"
-              style="display: inline;"
-              onsubmit="confirmarDelecao(event, this)"
-            >
-              <input type="hidden" name="id" value="" />
-              <button class="btn btn-danger" title="Excluir" type="submit">
-                <i class="fa fa-trash"></i>
-              </button>
-            </form>
-          </td>
+          <!--Ativar ou desativar plano -->
+          <% if (plano.deactivated) { %>
+            <td>
+              <a href="/plans/activate/<%= plano.id %>">
+                Ativar
+              </a>
+            </td>
+            <% } else {%>
+              <td>
+                <a href="/plans/deactivate/<%= plano.id %>">
+                  Desativar
+                </a>
+              </td>
+            <% } %>
         </tr>
         <% }) %>
       </tbody>
@@ -55,5 +53,29 @@
     <hr />
   </div>
 </body>
+
+
+<style>
+a:link{
+text-decoration:none;
+color:black;
+}
+
+a:visited{
+text-decoration:none;
+color:red;
+}
+
+a:hover{
+text-decoration:none;
+color:pink;
+}
+
+a:active{
+text-decoration:none;
+color:green;
+}
+
+</style>
 
 <%- include ("../partials/footer.ejs") %>

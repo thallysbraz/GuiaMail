@@ -13,9 +13,8 @@
           <th scope="col">List</th>
           <th scope="col">ClientID</th>
           <th scope="col">Valor</th>
-          <th scope="col">Import</th>
-          <th scope="col">createdAt</th>
-          <th scope="col">updatedAt</th>
+          <th scope="col">Status</th>
+          <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -26,9 +25,28 @@
           <td><%= plano.list %></td>
           <td><%= plano.client %></td>
           <td><%= plano.value %></td>
-          <td><%= plano.import %></td>
-          <td><%= plano.createdAt %></td>
-          <td><%= plano.updatedAt %></td>
+          <% if (plano.deactivated) { %>
+          <td>Ativado</td>
+          <% } else {%>
+          <td>Desativado</td>
+          <% } %>
+          <td>
+            <a class="btn btn-warning" title="Alterar" href="#">
+              <i class="fa fa-pencil"></i>
+            </a>
+
+            <form
+              method="POST"
+              action="#"
+              style="display: inline;"
+              onsubmit="confirmarDelecao(event, this)"
+            >
+              <input type="hidden" name="id" value="" />
+              <button class="btn btn-danger" title="Excluir" type="submit">
+                <i class="fa fa-trash"></i>
+              </button>
+            </form>
+          </td>
         </tr>
         <% }) %>
       </tbody>

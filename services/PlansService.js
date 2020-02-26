@@ -110,6 +110,18 @@ class PlansServices {
       return erros;
     }
   }
+
+  //deactivate para desativar um plano
+  async deactivated(id) {
+    try {
+      var plan = await this.getById(id);
+      plan.deactivated = true;
+      await plan.save();
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
 }
 
 module.exports = new PlansServices();

@@ -75,6 +75,17 @@ class PlansController {
       res.redirect(`/admin/plans/edit/${id}`);
     }
   }
+
+  //
+  async deactivated(req, res) {
+    var id = req.params.id;
+    var desativado = await PlansService.deactivated(id);
+    if (desativado) {
+      res.redirect("/admin/plans");
+    } else {
+      return res.json({ msg: "falha ao desativar plano" });
+    }
+  }
 }
 
 module.exports = new PlansController();

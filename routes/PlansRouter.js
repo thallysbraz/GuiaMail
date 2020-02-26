@@ -11,4 +11,6 @@ router.post("/plans/update", PlansController.update); //Rota para salvar atualiz
 router.get("/admin/plans/create", PlansController.create); //Render view de add plano
 router.post("/plans/store", PlansController.store); //Rota pra salvar dados de criação
 
+router.get("/plans;deactivate/:id", PlansController.deactivated); //Rota para desativar um plano
+
 module.exports = router;

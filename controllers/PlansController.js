@@ -30,16 +30,17 @@ class PlansController {
     var result = await PlansService.store(plan);
 
     if (result == true) {
-      return res.json(result);
+      res.redirect("/admin/plans");
     } else {
       req.flash("title_msg", result.title_msg);
       req.flash("list_msg", result.list_msg);
       res.redirect("/admin/plans/create");
     }
   }
+
   //renderizar view de editar planos
   async edit(req, res) {
-    var plan = await PlansService.edit(req.params.id);
+    var plan = await PlansService.getById(req.params.id);
     if (plan === undefined || plan === null) {
       res.json({ msg: "nada encontrado" });
     } else {
@@ -48,6 +49,29 @@ class PlansController {
         title_msg: req.flash("title_msg"),
         list_msg: req.flash("list_msg")
       });
+    }
+  }
+
+  //update para atualizar os dados
+  async update(req, res) {
+    var { title, list, client, value, imports, id } = req.body;
+
+    var plan = {
+      title,
+      list,
+      client,
+      value,
+      import: imports
+    };
+
+    var result = await PlansService.update(id, plan);
+
+    if (result == true) {
+      res.redirect("/admin/plans");
+    } else {
+      req.flash("title_msg", result.title_msg);
+      req.flash("list_msg", result.list_msg);
+      res.redirect(`/admin/plans/edit/${id}`);
     }
   }
 }

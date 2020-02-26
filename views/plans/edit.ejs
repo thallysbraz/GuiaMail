@@ -3,17 +3,17 @@
 
 <body>
   <div class="container">
-    <h2 class="mt-5">Editar plano</h2>
+    <br />
 
-    <hr />
-
-    <form action="/plans/store" method="POST">
+    <form action="/plans/update" method="POST">
       <div class="card">
         <div class="card-header">
-          <h4>Edição</h4>
+          <h4>Editar plano</h4>
         </div>
 
         <div class="card-body">
+          <input type="hidden" name="id" value="<%= plan.id %>" />
+
           <label>Plano</label>
           <input
             type="text"

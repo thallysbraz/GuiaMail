@@ -5,7 +5,7 @@ class PlansServices {
     this.Plan = Database["Plan"];
   }
 
-  //inde para listar todos os planos
+  //index para listar todos os planos
   async index(req, res) {
     try {
       var planos = await this.Plan.findAll();
@@ -78,12 +78,36 @@ class PlansServices {
   }
 
   //editar plano
-  async edit(id) {
+  async getById(id) {
     try {
       var plano = await this.Plan.findByPk(id);
       return plano;
     } catch (err) {
       return undefined;
+    }
+  }
+
+  //update para salvar atualização nos dados
+  async update(id, data) {
+    var erros = {};
+
+    var isValid = this.validate(data, erros);
+
+    if (isValid) {
+      try {
+        var plan = await this.getById(id);
+        plan.title = data.title;
+        plan.list = data.list;
+        plan.client = data.client;
+        plan.value = data.value;
+        await plan.save();
+        return true;
+      } catch (err) {
+        errors.system_msg = "Não foi possivel editar o plano!";
+        return errors;
+      }
+    } else {
+      return erros;
     }
   }
 }

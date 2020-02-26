@@ -15,6 +15,7 @@ class PlansController {
       list_msg: req.flash("list_msg")
     });
   }
+
   //store para criar planos
   async store(req, res) {
     var { title, list, client, value, imports } = req.body;

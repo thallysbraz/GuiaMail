@@ -27,20 +27,20 @@
           <td><%= plano.value %></td>
           <!--Status do plano -->
           <% if (plano.deactivated) { %>
-          <td>Desativado</td>
+          <td><i class="fas fa-minus-circle" title="Desativado"></i></td>
           <% } else {%>
-          <td>Ativado</td>
+          <td><i class="fas fa-check" title="Ativado"></i></td>
           <% } %>
           <!--Ativar ou desativar plano -->
           <% if (plano.deactivated) { %>
             <td>
-              <a href="/plans/activate/<%= plano.id %>">
+              <a id="a" href="/plans/activate/<%= plano.id %>">
                 Ativar
               </a>
             </td>
             <% } else {%>
               <td>
-                <a href="/plans/deactivate/<%= plano.id %>">
+                <a id="d" href="/plans/deactivate/<%= plano.id %>">
                   Desativar
                 </a>
               </td>
@@ -56,26 +56,17 @@
 
 
 <style>
-a:link{
-text-decoration:none;
-color:black;
-}
 
-a:visited{
-text-decoration:none;
-color:red;
-}
+  #d{
+  text-decoration:none;
+  color:red;
+  }
+  
+  #a{
+  text-decoration:none;
+  color:#007BFF;
+  }
 
-a:hover{
-text-decoration:none;
-color:pink;
-}
-
-a:active{
-text-decoration:none;
-color:green;
-}
-
-</style>
+  </style>
 
 <%- include ("../partials/footer.ejs") %>

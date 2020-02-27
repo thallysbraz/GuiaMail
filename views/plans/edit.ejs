@@ -1,0 +1,91 @@
+<%- include ("../partials/header.ejs") %> <%- include
+("../partials/homenavbar.ejs") %>
+
+<body>
+  <div class="container">
+    <br />
+
+    <form action="/plans/update" method="POST">
+      <div class="card">
+        <div class="card-header">
+          <h4>Editar plano</h4>
+        </div>
+
+        <div class="card-body">
+          <input type="hidden" name="id" value="<%= plan.id %>" />
+
+          <label>Plano</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            class="form-control"
+            placeholder="Titulo do plano"
+            required
+            value="<%= plan.title %>"
+          />
+          <br />
+
+          <% if (title_msg.length > 0) { %>
+          <div class="alert alert-danger">
+            <%= title_msg %>
+          </div>
+          <% } %>
+          <label>Lista</label>
+          <input
+            type="number"
+            name="list"
+            id="list"
+            class="form-control"
+            placeholder="Numero de listas"
+            value="<%= plan.list %>"
+            required
+          />
+          <br />
+
+          <% if (list_msg.length > 0) { %>
+          <div class="alert alert-danger">
+            <%= list_msg %>
+          </div>
+          <% } %>
+
+          <label>Cliente</label>
+          <input
+            type="number"
+            name="client"
+            id="client"
+            class="form-control"
+            placeholder="Numero de clientes"
+            value="<%= plan.client %>"
+            required
+          />
+          <br />
+          <label>Valor</label>
+          <input
+            type="number"
+            name="value"
+            id="value"
+            class="form-control"
+            placeholder="Custo"
+            value="<%= plan.value %>"
+            required
+          />
+          <br />
+
+          Permite importação de lista: <% if (plan.import) { %>
+
+          <input type="checkbox" name="imports" id="imports" checked />
+          <% } else { %>
+          <input type="checkbox" name="imports" id="imports" />
+          <% } %>
+        </div>
+
+        <div class="card-footer">
+          <button class="btn btn-success btn-block">Editar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+<%- include ("../partials/footer.ejs") %>

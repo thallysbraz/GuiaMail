@@ -5,11 +5,18 @@ class PlansServices {
     this.Plan = Database["Plan"];
   }
 
-  //inde para listar todos os planos
-  async index() {
-    var planos = await this.Plan.findAll();
-
-    return planos;
+  //index para listar todos os planos
+  async index(req, res) {
+    try {
+      var planos = await this.Plan.findAll();
+      if (planos !== undefined || planos !== null) {
+        return planos;
+      } else {
+        return null;
+      }
+    } catch (err) {
+      return undefined;
+    }
   }
 
   //store para criar os planos
@@ -66,6 +73,64 @@ class PlansServices {
     if (erroCount == 0) {
       return true;
     } else {
+      return false;
+    }
+  }
+
+  //editar plano
+  async getById(id) {
+    try {
+      var plano = await this.Plan.findByPk(id);
+      return plano;
+    } catch (err) {
+      return undefined;
+    }
+  }
+
+  //update para salvar atualização nos dados
+  async update(id, data) {
+    var erros = {};
+
+    var isValid = this.validate(data, erros);
+
+    if (isValid) {
+      try {
+        var plan = await this.getById(id);
+        plan.title = data.title;
+        plan.list = data.list;
+        plan.client = data.client;
+        plan.value = data.value;
+        await plan.save();
+        return true;
+      } catch (err) {
+        errors.system_msg = "Não foi possivel editar o plano!";
+        return errors;
+      }
+    } else {
+      return erros;
+    }
+  }
+
+  //deactivate para desativar um plano
+  async deactivated(id) {
+    try {
+      var plan = await this.getById(id);
+      plan.deactivated = true;
+      await plan.save();
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  //active para ativar um plano
+  async active(id) {
+    try {
+      var plan = await this.getById(id);
+      plan.deactivated = false;
+      await plan.save();
+      return true;
+    } catch (err) {
       return false;
     }
   }

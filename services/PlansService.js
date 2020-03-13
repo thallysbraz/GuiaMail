@@ -9,11 +9,8 @@ class PlansServices {
   async index(req, res) {
     try {
       var planos = await this.Plan.findAll();
-      if (planos !== undefined || planos !== null) {
-        return planos;
-      } else {
-        return null;
-      }
+      if (planos !== undefined || planos !== null) return planos;
+      else return null;
     } catch (err) {
       return undefined;
     }
@@ -23,15 +20,12 @@ class PlansServices {
   async store(plans) {
     var errors = {};
 
-    if (plans.import != undefined) {
-      plans.import = true;
-    } else {
-      plans.import = false;
-    }
+    if (plans.import != undefined) plans.import = true;
+    else plans.import = false;
 
     var isValid = await this.validate(plans, errors);
 
-    if (isValid) {
+    if (isValid)
       try {
         await this.Plan.create(plans);
 
@@ -41,9 +35,7 @@ class PlansServices {
 
         return errors;
       }
-    } else {
-      return errors;
-    }
+    else return errors;
   }
 
   // validações dos planos
@@ -53,28 +45,21 @@ class PlansServices {
     if (plan.title == undefined) {
       errors.title_msg = "o título é inválido";
       erroCount++;
-    } else {
-      if (plan.title.length < 3) {
-        errors.title_msg = "o título é inválido";
-        erroCount++;
-      }
+    } else if (plan.title.length < 3) {
+      errors.title_msg = "o título é inválido";
+      erroCount++;
     }
 
     if (plan.list == undefined) {
       errors.list_msg = "A quantidade de listas e inválida";
       erroCount++;
-    } else {
-      if (plan.list < 1) {
-        errors.list_msg = "A quantidade de listas e inválida";
-        erroCount++;
-      }
+    } else if (plan.list < 1) {
+      errors.list_msg = "A quantidade de listas e inválida";
+      erroCount++;
     }
 
-    if (erroCount == 0) {
-      return true;
-    } else {
-      return false;
-    }
+    if (erroCount == 0) return true;
+    else return false;
   }
 
   // editar plano
@@ -93,7 +78,7 @@ class PlansServices {
 
     var isValid = this.validate(data, erros);
 
-    if (isValid) {
+    if (isValid)
       try {
         var plan = await this.getById(id);
         plan.title = data.title;
@@ -106,9 +91,7 @@ class PlansServices {
         errors.system_msg = "Não foi possivel editar o plano!";
         return errors;
       }
-    } else {
-      return erros;
-    }
+    else return erros;
   }
 
   // deactivate para desativar um plano

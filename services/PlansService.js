@@ -1,11 +1,11 @@
-var Database = require("../models/index"); //Model de Planos
+var Database = require("../models/index"); // Model de Planos
 
 class PlansServices {
   constructor() {
-    this.Plan = Database["Plan"];
+    this.Plan = Database.Plan;
   }
 
-  //index para listar todos os planos
+  // index para listar todos os planos
   async index(req, res) {
     try {
       var planos = await this.Plan.findAll();
@@ -19,7 +19,7 @@ class PlansServices {
     }
   }
 
-  //store para criar os planos
+  // store para criar os planos
   async store(plans) {
     var errors = {};
 
@@ -46,7 +46,7 @@ class PlansServices {
     }
   }
 
-  //validações dos planos
+  // validações dos planos
   validate(plan, errors) {
     var erroCount = 0;
 
@@ -77,7 +77,7 @@ class PlansServices {
     }
   }
 
-  //editar plano
+  // editar plano
   async getById(id) {
     try {
       var plano = await this.Plan.findByPk(id);
@@ -87,7 +87,7 @@ class PlansServices {
     }
   }
 
-  //update para salvar atualização nos dados
+  // update para salvar atualização nos dados
   async update(id, data) {
     var erros = {};
 
@@ -111,7 +111,7 @@ class PlansServices {
     }
   }
 
-  //deactivate para desativar um plano
+  // deactivate para desativar um plano
   async deactivated(id) {
     try {
       var plan = await this.getById(id);
@@ -123,7 +123,7 @@ class PlansServices {
     }
   }
 
-  //active para ativar um plano
+  // active para ativar um plano
   async active(id) {
     try {
       var plan = await this.getById(id);

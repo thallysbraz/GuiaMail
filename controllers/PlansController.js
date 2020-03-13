@@ -1,14 +1,14 @@
 const PlansService = require("../services/PlansService");
 
 class PlansController {
-  //index para listar os planos na view
+  // index para listar os planos na view
   async index(req, res) {
     var retorno = await PlansService.index();
-    //return res.json(retorno);
+    // return res.json(retorno);
     res.render("plans/index", { planos: retorno });
   }
 
-  //para renderizar a view de criação
+  // para renderizar a view de criação
   create(req, res) {
     res.render("plans/create", {
       title_msg: req.flash("title_msg"),
@@ -16,7 +16,7 @@ class PlansController {
     });
   }
 
-  //store para criar planos
+  // store para criar planos
   async store(req, res) {
     var { title, list, client, value, imports } = req.body;
 
@@ -39,7 +39,7 @@ class PlansController {
     }
   }
 
-  //renderizar view de editar planos
+  // renderizar view de editar planos
   async edit(req, res) {
     var plan = await PlansService.getById(req.params.id);
     if (plan === undefined || plan === null) {
@@ -53,7 +53,7 @@ class PlansController {
     }
   }
 
-  //update para atualizar os dados
+  // update para atualizar os dados
   async update(req, res) {
     var { title, list, client, value, imports, id } = req.body;
 
@@ -76,7 +76,7 @@ class PlansController {
     }
   }
 
-  //deactivated para desativar um plano
+  // deactivated para desativar um plano
   async deactivated(req, res) {
     var id = req.params.id;
     var desativado = await PlansService.deactivated(id);
@@ -87,7 +87,7 @@ class PlansController {
     }
   }
 
-  //activate para ativar um plano
+  // activate para ativar um plano
 
   async activate(req, res) {
     var id = req.params.id;

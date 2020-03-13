@@ -31,10 +31,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Routes
-app.use("/", PlansRouter); //Rota de planos
+app.use('/', PlansRouter); //Rota de planos
 
-app.get("/", (req, res) => {
-  res.render("index.ejs");
+app.get('/', (req, res) => {
+  res.render('index.ejs');
 }); //Rota raiz
 
 // End Router

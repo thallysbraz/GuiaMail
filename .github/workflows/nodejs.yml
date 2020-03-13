@@ -20,6 +20,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
-      - run: yarn lint
+      
         env:
           CI: true
+    name: Teste codigo 
+    - run: yarn lint

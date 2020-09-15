@@ -4,10 +4,10 @@ const flash = require("connect-flash");
 const session = require("express-session");
 require("dotenv/config");
 
-//Iniciando server express
+// Iniciando server express
 const app = express();
 
-//Rota de planos
+// Rota de planos
 const PlansRouter = require("./routes/PlansRouter");
 
 // View engine
@@ -26,18 +26,19 @@ app.use(flash());
 
 app.use(express.static("public"));
 
-//Body parser
+// Body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//Routes
-app.use("/", PlansRouter); //Rota de planos
+// Routes
+app.use("/", PlansRouter); // Rota de planos
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
-}); //Rota raiz
+}); // Rota raiz
 
 // End Router
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`O servidor está rodando na porta ${PORT}`);
